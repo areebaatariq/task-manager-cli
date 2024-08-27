@@ -1,20 +1,16 @@
 import json
 import uuid
-from dataclasses import dataclass, field
 from typing import List
 from src.task import Task
 
-@dataclass
 class TaskManager:
-    file_path: str
-    tasks: List[Task] = field(default_factory=list)
-
-    def __post_init__(self):
-        self.tasks = self.load_tasks()
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+        self.tasks: List[Task] = self.load_tasks()
 
     def add_task(self, description: str):
         # Generate a unique identifier for the task
-        task_id = str(uuid.uuid4())[:3]
+        task_id = str(uuid.uuid4())
         task = Task(task_id, description)
         self.tasks.append(task)
         self.save_tasks()

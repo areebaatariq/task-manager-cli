@@ -1,13 +1,8 @@
-from dataclasses import dataclass
 from src.utils import TaskManager
 
-@dataclass
 class CLI:
-    file_path: str
-    manager: TaskManager = None  # Default to None, will be initialized in __post_init__
-
-    def __post_init__(self):
-        # Initialize TaskManager after the object is created
+    def __init__(self, file_path: str):
+        self.file_path = file_path
         self.manager = TaskManager(self.file_path)
 
     def show_menu(self):
@@ -35,7 +30,7 @@ class CLI:
                 try:
                     task_id = input("Enter task ID to delete: ").strip()
                     if not task_id:
-                        raise ValueError("No task ID provided.")  # Raise an error if the input is empty
+                        raise ValueError("No task ID provided.")
                     self.manager.delete_task(task_id)
                 except ValueError as e:
                     print(f"Invalid input: {e}")

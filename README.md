@@ -1,5 +1,4 @@
 
-
 # Task Manager CLI Application
 
 ## Overview

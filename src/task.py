@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-
 @dataclass
 class Task:
     task_id: str
